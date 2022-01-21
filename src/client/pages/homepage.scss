@@ -18,12 +18,16 @@
 }
 
 .banner {
-  padding: 80px 0 95px;
+  height: 400px;
   text-align: center;
   position: relative;
   overflow: hidden;
   z-index: 1;
   background: var(--sub-background-color);
+
+  &__paragraph {
+    margin-top: 80px;
+  }
 
   @keyframes rotate1 {
     from {
@@ -245,8 +249,8 @@
     }
 
     svg {
-      width: 70px;
-      height: 70px;
+      width: 52px;
+      height: 52px;
       margin: 15px;
     }
 
@@ -263,7 +267,7 @@
     p {
       font-size: 1.2em;
       text-align: justify;
-      text-indent: 2em;
+      //text-indent: 2em;
     }
   }
 
@@ -271,14 +275,22 @@
     display: grid !important;
     margin-top: 100px;
 
+    pre {
+      margin: 10px 30px 30px 20px;
+    }
+
     code {
       grid-area: code;
-      padding: 50px;
+      padding: 20px 50px !important;
       background-color: #262a2d;
       color: whitesmoke;
       font-size: 1.1em;
-      height: 250px;
+      height:300px;
+      box-shadow: 0 8px 15px 0 rgb(0 0 0 / 20%);
+      border-radius: 5px;
+      //margin: 0 0 20px 30px;
     }
+
 
     &_info {
       font-size: 1.2em;
