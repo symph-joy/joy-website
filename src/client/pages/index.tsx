@@ -3,7 +3,7 @@ import { BaseReactController, ReactController } from "@symph/react";
 import { Link } from "@symph/react/router-dom";
 import { Layout, Typography, Button, Row, Carousel } from "antd";
 import styles from "./homepage.scss";
-import { ClusterOutlined, ApartmentOutlined, FundOutlined, CloudServerOutlined } from "@ant-design/icons";
+import { ClusterOutlined, ApartmentOutlined, FundOutlined, CloudServerOutlined, BlockOutlined, LinkOutlined,AppstoreAddOutlined } from "@ant-design/icons";
 import { Prerender } from "@symph/joy";
 import { DocsModel } from "../model/docs.model";
 import { Inject } from "@symph/core";
@@ -101,48 +101,60 @@ export default class HelloController extends BaseReactController {
           </section>
 
           {/* -------- news -------- */}
-          <section role="news" className={styles.news}>
-            <div className={styles.container}>
-              <div className={styles.news__list}>
-                <a href="#">最新公告</a>
-                {/*<a href="#">Bye Bye!</a>*/}
-              </div>
-            </div>
-          </section>
+          {/*<section role="news" className={styles.news}>*/}
+          {/*  <div className={styles.container}>*/}
+          {/*    <div className={styles.news__list}>*/}
+          {/*      <a href="#">最新公告</a>*/}
+          {/*      /!*<a href="#">Bye Bye!</a>*!/*/}
+          {/*    </div>*/}
+          {/*  </div>*/}
+          {/*</section>*/}
 
           {/* -------- function -------- */}
           <section role="function" className={styles.function}>
             <div className={styles.container}>
               <header>
-                <h1 className={styles.function__title}>JOY 可以做什么</h1>
+                <h1 className={styles.function__title}>” Joy 可以做什么</h1>
               </header>
               <div>
                 <ul className={styles.function__list}>
                   <li>
-                    <ApartmentOutlined />
-                    <h2>面向对象</h2>
-                    <p>将面向对象编程运用到 JS/TS 应用中，从架构到业务设计，从前端到后端都适用。</p>
-                  </li>
-                  <li>
                     <FundOutlined />
                     <h2>React 应用</h2>
-                    <p>提供完整的 React 应用解决方案，屏蔽技术细节，能够快速业务开发。</p>
+                    <p>提供一体的 React 应用解决方案，快速开发页面，管理状态，支持服务端渲染。</p>
                   </li>
                   <li>
                     <CloudServerOutlined />
                     <h2>Node.js 应用</h2>
-                    <p>类似 Spring Boot ，基于控制反转的容器，提供数据库、缓存、安全等常用组件。（开发中）</p>
+                    <p>类似 Spring Boot，开箱即用，提供数据库、缓存、安全等常用组件。（开发中）</p>
+                  </li>
+                  <li>
+                    <BlockOutlined />
+                    <h2>混合同构开发</h2>
+                    <p>一体式开发，可一次编写数据结构、接口约定、处理方法等，前后端共同使用。</p>
                   </li>
                   <li>
                     <ClusterOutlined />
-                    <h2>多端应用</h2>
-                    <p>可用于开发 Node.js 应用和 React 应用，以及混合同构应用，适应多产品类型研发。</p>
+                    <h2>前后端分离部署</h2>
+                    <p>可一键快速启动整个应用，或者将前端内容编译导出，独立部署和运行。</p>
+                  </li>
+
+                  <li>
+                    <LinkOutlined />
+                    <h2>类型约束</h2>
+                    <p>默认支持和推荐使用TypeScript，提供静态类型检查和高级语法特性。</p>
                   </li>
                   <li>
-                    <ClusterOutlined />
-                    <h2>前后端分离</h2>
-                    <p>可运行为服务进程，实时渲染页面和提供数据服务，或将前端导出静态部署，前后端可分离运行。</p>
+                    <ApartmentOutlined />
+                    <h2>面向对象</h2>
+                    <p>将面向对象软件开发方法运用到 JS/TS 应用中，能轻松应付复杂的业务场景。</p>
                   </li>
+                  <li>
+                    <AppstoreAddOutlined />
+                    <h2>依赖注入</h2>
+                    <p>让代码进一步简单，更容易理解和测试。</p>
+                  </li>
+
                   {/*<li>*/}
                   {/*  <GithubOutlined />*/}
                   {/*  <h2>Event Driven</h2>*/}
@@ -209,7 +221,7 @@ export default class HelloController extends BaseReactController {
               <div className={styles.container}>
                 <div className={styles.footer__contactUs}>
                   <div>联系我们</div>
-                  <div>Github Issue: https://github.com/lnlfps/symph-joy/issues</div>
+                  <div>Github Issue: <a href="https://github.com/symph-joy/symph-joy/issues" target="_blank">https://github.com/symph-joy/symph-joy/issues</a></div>
                   <div>QQ群: 929743297</div>
                   <div>Email: lnlfps@gmail.com</div>
                 </div>
