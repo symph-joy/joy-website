@@ -1,5 +1,5 @@
 import { BaseReactModel, ReactModel } from "@symph/react";
-import { FetchError, ReactFetchService } from "@symph/joy";
+import { FetchError, ReactFetchService } from "@symph/joy/react";
 import { Inject } from "@symph/core";
 
 export interface DocMenuItem {
@@ -125,6 +125,7 @@ export class DocsModel extends BaseReactModel<DocsModelState> {
     });
     return respJson.data;
   }
+  
 
   public async getAllDocsMenus(): Promise<DocMenuItem[]> {
     const resp = await this.fetchService.fetchApi("/docs/allMenus");
