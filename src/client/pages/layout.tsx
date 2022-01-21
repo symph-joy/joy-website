@@ -91,7 +91,6 @@ export default class MainLayout extends BaseReactController<any, IStateProps> {
   }
 
   componentDidMount() {
-    super.componentDidMount();
     const theme = getTheme();
     const oBtn = document.getElementById("collapseBtn");
     const oBody = document.getElementsByTagName("body")[0];
@@ -117,8 +116,6 @@ export default class MainLayout extends BaseReactController<any, IStateProps> {
   }
 
   componentWillUnmount() {
-    super.componentWillUnmount();
-
     const { observer } = this.state;
     const oBtn = document.getElementById("collapseBtn");
 
