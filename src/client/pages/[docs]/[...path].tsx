@@ -21,18 +21,6 @@ export default class Path extends BaseReactController {
     showDrawer: false,
   };
 
-  // async initialModelStaticState(): Promise<void | number> {
-  //   let path = this.docPath || "/docs/docs/start/introduce";
-  //   await this.fetchPageDocData(path);
-  // }
-
-  async fetchPageDocData(path) {
-    if (!path.startsWith("/")) {
-      path = "/docs/" + path;
-    }
-    await this.docsModel.getDoc(path);
-  }
-
   componentDidUpdate() {
     this.scrollEle();
   }
@@ -98,7 +86,7 @@ export default class Path extends BaseReactController {
                 {loadCurrentDocErr.code}:{loadCurrentDocErr.message}
               </div>
             ) : undefined}
-            <Doc className={styles.docContent} path={this.docPath || "/docs/docs/start/introduce"} />
+            <Doc className={styles.docContent} path={this.props.location.pathname} />
           </Spin>
         </div>
         <div className={styles.titleTree}>
