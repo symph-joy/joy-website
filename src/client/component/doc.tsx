@@ -8,14 +8,7 @@ export default class Doc extends BaseReactController {
   public docsModel: DocsModel;
 
   async initialModelStaticState(): Promise<void | number> {
-    let path = this.props.path || "/docs/docs/start/introduce";
-    await this.fetchPageDocData(path);
-  }
-
-  async fetchPageDocData(path) {
-    if (!path.startsWith("/")) {
-      path = "/docs/" + path;
-    }
+    const path = this.props.path as string;
     await this.docsModel.getDoc(path);
   }
 

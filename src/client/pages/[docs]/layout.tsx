@@ -21,12 +21,12 @@ export default class DocsLayout extends BaseReactController {
   };
 
   private async showDoc(menu: DocMenuItem) {
-    this.props.navigate(`/docs${menu.path}`);
+    this.props.navigate(`${menu.path}`);
   }
 
   async initialModelStaticState(): Promise<void | number> {
     const tem = this.props.location.pathname.split("/");
-    let path = [tem[0], tem[2]].join("/") || "/docs/docs";
+    let path = [tem[0], tem[1]].join("/") || "/docs";
     await this.docsModel.getDocMenus(path);
   }
 
