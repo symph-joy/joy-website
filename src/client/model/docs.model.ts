@@ -222,7 +222,8 @@ export class DocsModel extends BaseReactModel<DocsModelState> {
     } catch (e) {
       this.setState({
         loadCurrentDocErr: e,
-        currentDoc: undefined,
+        currentDoc: null,
+        titleTrees: [],
         loadingCurrentDoc: false,
       });
     }

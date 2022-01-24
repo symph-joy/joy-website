@@ -207,7 +207,7 @@ export default class MainLayout extends BaseReactController<any, IStateProps> {
                 {/*</Menu.SubMenu>*/}
 
                 <MenuItem key="2">
-                  <Link to="/config/start/introduce">配置</Link>
+                  <Link to="/config/introduce">配置</Link>
                 </MenuItem>
                 <MenuItem key="4">指南</MenuItem>
                 <MenuItem key="5">插件</MenuItem>
