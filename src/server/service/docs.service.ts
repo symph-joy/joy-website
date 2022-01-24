@@ -10,6 +10,7 @@ import { hashReg } from "../../client/utils/constUtils";
 export interface DocMenu {
   title: string;
   path: string;
+  file: string;
   children?: DocMenu[];
 }
 
@@ -54,7 +55,9 @@ export class DocsService implements IComponentLifecycle {
 
   public searchDoc: Doc[];
 
-  public menusCache: Map<string, Doc> = new Map<string, Doc>();
+  public allDocsCache: Map<string, Doc> = new Map<string, Doc>();
+
+  public allMenusCache: Map<string, DocMenu> = new Map<string, DocMenu>();
 
   public titleArray: TreeItem[];
 
@@ -108,14 +111,29 @@ export class DocsService implements IComponentLifecycle {
   // 获取所有menus和文档
   public getAllMenus(): DocMenu[] {
     const { dir } = this.configDocs || {};
-    return this.getMenusByDir(dir, "allMenus");
+    const menu = this.getMenusByDir(dir, "allMenus");
+    this.setMenuCache(menu);
+    return menu;
   }
 
   // 当前页面的menu
   public getMenus(path: string): DocMenu[] {
     let { dir } = this.configDocs || {};
     dir += path;
-    return this.getMenusByDir(dir, "menus");
+    dir = dir.slice(1);
+    const menu = this.allMenusCache.get(dir as string);
+    debugger
+    return menu?.children;
+  }
+
+  private setMenuCache(menus: DocMenu[]): void {
+    this.allMenusCache.clear();
+    for (const menu of menus) {
+      const { title, file } = menu;
+      if (title) {
+        this.allMenusCache.set("/" + file, menu);
+      }
+    }
   }
 
   private getMenusByDir(dir: string | string[], key: string): DocMenu[] {
@@ -141,7 +159,7 @@ export class DocsService implements IComponentLifecycle {
       }
       const { doc, searchDoc } = this.recursiveFindDoc(dir, "", dir);
       doc?.children && docs.push(...doc.children);
-      // 获取所有menu时才需要获取seach内容
+      // 获取所有menu时才需要获取search内容
       if (key === "allMenus") {
         // 除去@开头文件的doc
         searchDoc?.children && docsSearch.push(...searchDoc.children);
@@ -158,7 +176,7 @@ export class DocsService implements IComponentLifecycle {
     const baseName = path.basename(dir);
     const menuItemConfig = this.tryGetMenuConfig(dir);
     const nodePath = menuItemConfig?.path || baseName;
-    const menuPath = parentPath + "/" + nodePath;
+    let menuPath = parentPath + "/" + nodePath;
     const menuTitle = menuItemConfig?.title || nodePath;
     const menuSearch = menuItemConfig && menuItemConfig.hasOwnProperty("search") ? menuItemConfig.search : true;
     let children: Doc[] | undefined;
@@ -197,6 +215,9 @@ export class DocsService implements IComponentLifecycle {
         }
         // 去掉path前的数字
         childPath = this.deletePathNumber(childPath);
+        let test = childPath.split("/");
+        test.splice(1, 1);
+        childPath = test.join("/");
         let doc = {
           title: title || childTitle,
           path: childPath,
@@ -215,6 +236,9 @@ export class DocsService implements IComponentLifecycle {
         }
       }
     });
+    let test = menuPath.split("/");
+    test.splice(1, 1);
+    menuPath = test.join("/");
     return {
       doc: { title: menuTitle, path: menuPath, file: dir, children },
       searchDoc: {
@@ -276,12 +300,12 @@ export class DocsService implements IComponentLifecycle {
   }
 
   private setCache(docs: Doc[]): void {
-    this.menusCache.clear();
+    this.allDocsCache.clear();
     const findDoc = (children: Doc[]) => {
       for (const child of children) {
         const { file, children, path } = child;
         if (file) {
-          this.menusCache.set(path, child);
+          this.allDocsCache.set(path, child);
         }
         if (children) {
           findDoc(children);
@@ -292,7 +316,7 @@ export class DocsService implements IComponentLifecycle {
   }
 
   public getDoc(docPath: string): Doc {
-    let doc = this.menusCache.get(docPath);
+    let doc = this.allDocsCache.get(docPath);
     if (!doc) {
       throw new NotFoundException(docPath, `Doc was not found, path: ${docPath}`);
     }

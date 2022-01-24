@@ -211,7 +211,7 @@ export class DocsModel extends BaseReactModel<DocsModelState> {
     });
 
     try {
-      const respJson = await this.fetchDocDetail("/docs" + path);
+      const respJson = await this.fetchDocDetail(path);
       const doc = respJson.data;
       this.setState({
         loadCurrentDocErr: undefined,
