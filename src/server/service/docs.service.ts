@@ -122,7 +122,6 @@ export class DocsService implements IComponentLifecycle {
     dir += path;
     dir = dir.slice(1);
     const menu = this.allMenusCache.get(dir as string);
-    debugger
     return menu?.children;
   }
 
@@ -317,6 +316,7 @@ export class DocsService implements IComponentLifecycle {
 
   public getDoc(docPath: string): Doc {
     let doc = this.allDocsCache.get(docPath);
+    debugger;
     if (!doc) {
       throw new NotFoundException(docPath, `Doc was not found, path: ${docPath}`);
     }

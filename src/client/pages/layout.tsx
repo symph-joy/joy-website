@@ -116,8 +116,6 @@ export default class MainLayout extends BaseReactController<any, IStateProps> {
   }
 
   componentWillUnmount() {
-    super.componentWillUnmount();
-
     const { observer } = this.state;
     const oBtn = document.getElementById("collapseBtn");
 
@@ -196,14 +194,20 @@ export default class MainLayout extends BaseReactController<any, IStateProps> {
                     </AutoComplete>
                   </MenuItem>
                 )}
-                <MenuItem key="1">
-                  <a onClick={this.pushHistory.bind(this, "/docs/start/introduce")}>开始</a>
+                {/*<Menu.SubMenu key="1" title="项目">*/}
+                <MenuItem key="/projects/joy">
+                  <Link to={"/joy/start/introduce"}>Joy</Link>
                 </MenuItem>
+                <MenuItem key="/projects/react">
+                  <Link to={"/react/start/introduce"}>React</Link>
+                </MenuItem>
+                <MenuItem key="/projects/server">
+                  <Link to={"/server/start/introduce"}>Server</Link>
+                </MenuItem>
+                {/*</Menu.SubMenu>*/}
+
                 <MenuItem key="2">
                   <Link to="/config/start/introduce">配置</Link>
-                </MenuItem>
-                <MenuItem key="3">
-                  <Link to="/api/start/introduce">API</Link>
                 </MenuItem>
                 <MenuItem key="4">指南</MenuItem>
                 <MenuItem key="5">插件</MenuItem>

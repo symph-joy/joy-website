@@ -137,7 +137,7 @@ export class DocsModel extends BaseReactModel<DocsModelState> {
     if (Array.isArray(arr)) {
       for (const child of arr) {
         if (child.children) {
-          res.push("/docs" + child.path);
+          res.push(child.path);
           this.flatDocMenus(child.children, res);
         }
       }
@@ -214,7 +214,7 @@ export class DocsModel extends BaseReactModel<DocsModelState> {
       const respJson = await this.fetchDocDetail(path);
       const doc = respJson.data;
       this.setState({
-        loadCurrentDocErr: undefined,
+        loadCurrentDocErr: null,
         currentDoc: doc,
         titleTrees: doc.anchor,
         loadingCurrentDoc: false,
