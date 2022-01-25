@@ -46,3 +46,13 @@ body[data-theme="dark"] {
 a {
   color: var(--ant-primary-color);
 }
+
+.language-mermaid {
+  background-color: var(--background-color);
+}
+
+blockquote {
+  padding: 4px 12px;
+  background-color: #eeeeee;
+  border-left: var(--ant-primary-color) solid 4px;
+}

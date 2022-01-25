@@ -30,17 +30,7 @@ $ tyarn -v
 $ mkdir myapp && cd myapp
 ```
 
-创建应用内目录和文件，目录结构如下：
-
-```shell
-myapp
-  src  # 源代码目录
-    pages  # 约定React路由目录
-      index.tsx  # 第一个页面
-  package.json
-```
-
-- 在 package.json 内声明应用名和依赖：
+- 创建 package.json 文件， 申明应用名和依赖：
 
 ```json
 {
@@ -48,27 +38,17 @@ myapp
   "version": "v1.0.0",
   "scripts": {
     "dev": "joy dev",
-    "export": "joy build&&joy export"
+    "build": "joy build",
+    "start": "joy start"
   },
   "dependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "@symph/joy": "^2.0.0"
-  }
-}
-```
-
-- 创建第一个路由页面`index.tsx`, Joy 同时支持 ES6 和 Typescript 语法，如果使用 ES6，创建 JS 文件`index.jsx`，添加页面展现内容:
-
-```tsx
-// src/pages/index.tsx
-import React from "react";
-import { ReactController, BaseReactController } from "@symph/react";
-
-@ReactController()
-export default class Index extends BaseReactController {
-  renderView() {
-    return <p>Hello Joy!</p>;
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.1",
+    "@types/react-dom": "^17.0.1"
   }
 }
 ```
@@ -79,6 +59,91 @@ export default class Index extends BaseReactController {
 $ yarn install
 ```
 
+## 第一个页面
+
+### React 客户端
+
+#### 创建 Model
+
+创建文件 `src/client/model/hello.model.ts`, ReactModel 管理应用状态数据和封装业务方法。
+
+```ts
+// src/client/model/hello.model.ts
+import { ReactModel, BaseReactModel } from "@symph/react";
+import { Inject } from "@symph/core";
+import { ReactFetchService } from "@symph/joy";
+
+@ReactModel()
+export class HelloModel extends BaseReactModel<{
+  message: string;
+}> {
+  constructor(@Inject("joyFetchService") private joyFetchService: ReactFetchService) {
+    super();
+  }
+
+  getInitState() {
+    return { message: "Hello World!" }; // Init model state
+  }
+
+  async fetchMessage() {
+    const resp = await this.joyFetchService.fetchApi("/hello");
+    const message = await resp.text();
+    this.setState({ message }); // Update model state
+  }
+}
+```
+
+#### 创建页面
+
+- 创建第一个页面`src/client/pages/index.tsx`，页面 ReactController 负责展示 Model 中的状态，响应用户交互，触发业务流程。
+
+```tsx
+// src/client/pages/index.tsx
+import React, { ReactNode } from "react";
+import { BaseReactController, ReactController } from "@symph/react";
+import { Inject } from "@symph/core";
+import { HelloModel } from "../model/hello.model";
+
+@ReactController()
+export default class IndexController extends BaseReactController {
+  @Inject()
+  helloModel: HelloModel;
+
+  renderView(): ReactNode {
+    const { message } = this.helloModel.state;
+    return (
+      <div>
+        <div id="message">{message}</div>
+        <button id="btnUpdateMessage" onClick={() => this.helloModel.fetchMessage()}>
+          Update Message
+        </button>
+      </div>
+    );
+  }
+}
+```
+
+### Server 服务端
+
+#### 创建 Api Controller
+
+创建文件 `server/controller/hello.controller.ts`, Server Controller 对外提供 HTTP 接口服务。
+
+```ts
+// server/controller/hello.controller.ts
+import { Controller, Get } from "@symph/server";
+
+@Controller()
+export class HelloController {
+  @Get("/hello")
+  hello(): string {
+    return "Hello Joy!";
+  }
+}
+```
+
+服务启动后，可通过 `http://localhost:3000/api/hello` 访问该接口。
+
 ## 启动开发服务器
 
 ```shell
@@ -86,39 +151,31 @@ $ yarn dev
 ```
 
 当命令行输出`ready - started server on http://localhost:3000`时，开发服务器启动成功，打开浏览器输入地址 `http://localhost:3000`，即可看到我们的第一个页面`Hello Joy!`。
-若此时修改页面内容`Hello Joy!`为`Hello MyApp`，然后保存文件，浏览器界面将自动更新为新内容。
+
+> 热更新：此时可尝试修改页面内容，当保存后，浏览器界面将自动更新为新内容。
 
 ## 部署发布
 
 ### 构建
 
 ```shell
-$ yarn export
+$ yarn run build
 ```
 
-构建产物默认生成到 ./out 下，目录结构类似于：
+执行 `joy build` 命令将在 `.joy` 文件夹中构建出用于生产环境的应用程序。
+
+### 运行应用
 
 ```shell
-./out
-  index.html
-  404.html
-  _joy/ # 包含js、css、json等
+$ yarn run start
 ```
 
-### 本地验证
+构建完成后执行 `joy start`命令，将启动一个 Node.js 服务程序，该服务对外提供 HTTP API 接口服务，以及渲染 React 页面。
 
-使用`http-server`启动本地静态文件服务器
+### 导出静态HTML
 
-```shell
-# 安装 http-server
-$ npm i -g http-server
+将React应用导出为静态HTML，可使其独立运行和部署。
 
-# 启动服务器
-$ http-server ./out
-```
+例如当我们开发一个单纯的React应用，业务接口由服务端团队提供，也不需要服务端渲染时，可以考虑将React应用导出，然后部署到Nginx静态资源服务器上。
 
-在浏览器上打开地址：[http://127.0.0.1:8080](http://127.0.0.1:8080), 正常情况下应该是和`yarn dev`开发运行时是一致的。
-
-### 部署
-
-本地验证完成后，将`out`目录部署到服务器上即可。
+如果想将 `@symph/joy` 应用程序导出为静态 HTML，请参照 导出文档 中的说明进行操作。

@@ -3,7 +3,15 @@ import { BaseReactController, ReactController } from "@symph/react";
 import { Link } from "@symph/react/router-dom";
 import { Layout, Typography, Button, Row, Carousel } from "antd";
 import styles from "./homepage.scss";
-import { ClusterOutlined, ApartmentOutlined, FundOutlined, CloudServerOutlined, BlockOutlined, LinkOutlined,AppstoreAddOutlined } from "@ant-design/icons";
+import {
+  ClusterOutlined,
+  ApartmentOutlined,
+  FundOutlined,
+  CloudServerOutlined,
+  BlockOutlined,
+  LinkOutlined,
+  AppstoreAddOutlined,
+} from "@ant-design/icons";
 import { Prerender } from "@symph/joy";
 import { DocsModel } from "../model/docs.model";
 import { Inject } from "@symph/core";
@@ -17,7 +25,7 @@ export default class HelloController extends BaseReactController {
   @Inject()
   public docModel: DocsModel;
 
-  async initialModelStaticState(): Promise<void | number> {
+  async initModelStaticState(): Promise<void | number> {
     await Promise.all([
       this.docModel.getSnippet("/docs/@snippets/hello-react-controller"),
       this.docModel.getSnippet("/docs/@snippets/hello-server-controller"),
@@ -221,7 +229,12 @@ export default class HelloController extends BaseReactController {
               <div className={styles.container}>
                 <div className={styles.footer__contactUs}>
                   <div>联系我们</div>
-                  <div>Github Issue: <a href="https://github.com/symph-joy/symph-joy/issues" target="_blank">https://github.com/symph-joy/symph-joy/issues</a></div>
+                  <div>
+                    Github Issue:{" "}
+                    <a href="https://github.com/symph-joy/symph-joy/issues" target="_blank">
+                      https://github.com/symph-joy/symph-joy/issues
+                    </a>
+                  </div>
                   <div>QQ群: 929743297</div>
                   <div>Email: lnlfps@gmail.com</div>
                 </div>

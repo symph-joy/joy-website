@@ -7,14 +7,14 @@ export default class Doc extends BaseReactController {
   @Inject()
   public docsModel: DocsModel;
 
-  async initialModelStaticState(): Promise<void | number> {
+  async initModelStaticState(): Promise<void | number> {
     const path = this.props.path as string;
     await this.docsModel.getDoc(path);
   }
 
   addMermaid() {
     function initMermaid() {
-      (window as any).mermaid.initialize({ theme: "dark" });
+      (window as any).mermaid.initialize({ theme: "base", themeVariables: { primaryColor: "#ffd8bf" } });
       (window as any).mermaid.init(undefined, ".language-mermaid");
     }
     let script: HTMLScriptElement | undefined = document.getElementById("mermaid-script") as HTMLScriptElement;

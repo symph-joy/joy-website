@@ -24,7 +24,7 @@ export default class DocsLayout extends BaseReactController {
     this.props.navigate(`${menu.path}`);
   }
 
-  async initialModelStaticState(): Promise<void | number> {
+  async initModelStaticState(): Promise<void | number> {
     const tem = this.props.location.pathname.split("/");
     let path = [tem[0], tem[1]].join("/") || "/docs";
     await this.docsModel.getDocMenus(path);
