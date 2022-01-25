@@ -12,6 +12,33 @@ export default class Doc extends BaseReactController {
     await this.docsModel.getDoc(path);
   }
 
+<<<<<<< HEAD
+=======
+  addMermaid() {
+    function initMermaid() {
+      (window as any).mermaid.initialize({ theme: "dark" });
+      (window as any).mermaid.init(undefined, ".language-mermaid");
+    }
+    let script: HTMLScriptElement | undefined = document.getElementById("mermaid-script") as HTMLScriptElement;
+    if (!script) {
+      script = document.createElement("script");
+      script.id = "mermaid-script";
+      script.type = "text/javascript";
+      script.src = "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js";
+      document.body.appendChild(script);
+      script.onload = () => {
+        initMermaid();
+      };
+    } else {
+      initMermaid();
+    }
+  }
+
+  componentDidMount() {
+    this.addMermaid();
+  }
+
+>>>>>>> abc63a5cb558040866ccd2a75c4d55bc1707f26b
   renderView(): ReactNode {
     const { currentDoc } = this.docsModel.state;
     const className = this.props.className as string;
