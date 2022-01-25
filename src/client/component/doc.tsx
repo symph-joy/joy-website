@@ -12,8 +12,6 @@ export default class Doc extends BaseReactController {
     await this.docsModel.getDoc(path);
   }
 
-<<<<<<< HEAD
-=======
   addMermaid() {
     function initMermaid() {
       (window as any).mermaid.initialize({ theme: "base", themeVariables: { primaryColor: "#ffd8bf" } });
@@ -38,7 +36,6 @@ export default class Doc extends BaseReactController {
     this.addMermaid();
   }
 
->>>>>>> abc63a5cb558040866ccd2a75c4d55bc1707f26b
   renderView(): ReactNode {
     const { currentDoc } = this.docsModel.state;
     const className = this.props.className as string;
