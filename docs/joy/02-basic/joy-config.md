@@ -1,4 +1,4 @@
-# JOY 配置
+# Joy 配置
 
 ## basePath
 
