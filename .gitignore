@@ -3,6 +3,7 @@ config/*.local.*
 # build output
 dist
 .joy
+out
 
 # dependencies
 node_modules
