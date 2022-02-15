@@ -9,7 +9,8 @@
   "scripts": {
     "joy-dev": "joy dev",
     "joy-build": "joy build",
-    "joy-export": "joy build&&joy export"
+    "joy-export": "joy build&&joy export",
+    "joy-push": "node push.mjs"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
