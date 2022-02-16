@@ -11,6 +11,8 @@ import {
   BlockOutlined,
   LinkOutlined,
   AppstoreAddOutlined,
+  DeploymentUnitOutlined,
+  FundViewOutlined
 } from "@ant-design/icons";
 import { Prerender } from "@symph/joy";
 import { DocsModel } from "../model/docs.model";
@@ -27,8 +29,8 @@ export default class HelloController extends BaseReactController {
 
   async initModelStaticState(): Promise<void | number> {
     await Promise.all([
-      this.docModel.getSnippet("/docs/@snippets/hello-react-controller"),
-      this.docModel.getSnippet("/docs/@snippets/hello-server-controller"),
+      this.docModel.getSnippet("/@snippets/hello-react-controller"),
+      this.docModel.getSnippet("/@snippets/hello-server-controller"),
     ]);
   }
 
@@ -51,8 +53,8 @@ export default class HelloController extends BaseReactController {
 
   renderView(): ReactNode {
     const { snippets } = this.docModel.state;
-    const docHelloReactController = snippets["/docs/@snippets/hello-react-controller"];
-    const docHelloServerController = snippets["/docs/@snippets/hello-server-controller"];
+    const docHelloReactController = snippets["/@snippets/hello-react-controller"];
+    const docHelloServerController = snippets["/@snippets/hello-server-controller"];
 
     return (
       <Layout className={styles.layout}>
@@ -127,40 +129,49 @@ export default class HelloController extends BaseReactController {
               <div>
                 <ul className={styles.function__list}>
                   <li>
-                    <FundOutlined />
-                    <h2>React 应用</h2>
-                    <p>提供一体的 React 应用解决方案，快速开发页面，管理状态，支持服务端渲染。</p>
+                    <Link to={'/joy/start/introduce'}>
+                    <DeploymentUnitOutlined />
+                    <h2>JS/TS 全栈框架</h2>
+                    <p>@symph/joy 满足简单到复杂应用研发，开箱即用，渐进式迭代，能够快速开发、调试和发布应用。</p>
+                    </Link>
                   </li>
                   <li>
+                    <Link to={'/react/start/introduce'}>
+                    <FundViewOutlined />
+                    <h2>React 应用</h2>
+                    <p>提供一体的 React 应用解决方案，快速开发页面，管理状态，支持服务端渲染。</p>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={'/server/start/introduce'}>
                     <CloudServerOutlined />
                     <h2>Node.js 应用</h2>
                     <p>类似 Spring Boot，开箱即用，提供数据库、缓存、安全等常用组件。（开发中）</p>
+                    </Link>
                   </li>
+                  <li>
+                    <Link to={'/server/start/introduce'}>
+                      <AppstoreAddOutlined />
+                    <h2>容器化</h2>
+                    <p>将面向对象软件开发方法运用到 JS/TS 应用中，能轻松应对复杂业务场景。</p>
+                    </Link>
+                  </li>
+
                   <li>
                     <BlockOutlined />
                     <h2>混合同构开发</h2>
-                    <p>一体式开发，可一次编写数据结构、接口约定、处理方法等，前后端共同使用。</p>
+                    <p>前后端一体开发，可一次编写数据结构、接口约定、处理方法等，前后端共同使用。</p>
                   </li>
                   <li>
                     <ClusterOutlined />
-                    <h2>前后端分离部署</h2>
-                    <p>可一键快速启动整个应用，或者将前端内容编译导出，独立部署和运行。</p>
+                    <h2>前后端分离</h2>
+                    <p>可将前端应用导出，独立运行和部署，或者前后端分离两工程独立开发。</p>
                   </li>
 
                   <li>
                     <LinkOutlined />
                     <h2>类型约束</h2>
                     <p>默认支持和推荐使用TypeScript，提供静态类型检查和高级语法特性。</p>
-                  </li>
-                  <li>
-                    <ApartmentOutlined />
-                    <h2>面向对象</h2>
-                    <p>将面向对象软件开发方法运用到 JS/TS 应用中，能轻松应付复杂的业务场景。</p>
-                  </li>
-                  <li>
-                    <AppstoreAddOutlined />
-                    <h2>依赖注入</h2>
-                    <p>让代码进一步简单，更容易理解和测试。</p>
                   </li>
 
                   {/*<li>*/}
