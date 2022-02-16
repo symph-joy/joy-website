@@ -246,6 +246,10 @@
         transform: translateY(-5px) translateZ(-5px);
         box-shadow: 0 10px 20px 0 rgba(108, 135, 135, 0.2);
       }
+
+      a {
+        color: var(--font-color);
+      }
     }
 
     svg {
@@ -261,6 +265,10 @@
     }
 
     li:hover h2 {
+      color: var(--ant-primary-color);
+    }
+
+    li:hover a {
       color: var(--ant-primary-color);
     }
 
