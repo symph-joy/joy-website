@@ -238,6 +238,8 @@ export class DocsService implements IComponentLifecycle {
     let test = menuPath.split("/");
     test.splice(1, 1);
     menuPath = test.join("/");
+    menuPath = menuPath.replace(/(\\)+/g, "/");
+    dir = dir.replace(/(\\)+/g, "/");
     return {
       doc: { title: menuTitle, path: menuPath, file: dir, children },
       searchDoc: {
