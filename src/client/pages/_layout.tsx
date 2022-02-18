@@ -190,7 +190,7 @@ export default class MainLayout extends BaseReactController<any, IStateProps> {
                         ),
                       }))}
                     >
-                      <Input prefix={<SearchOutlined />} placeholder="搜索" />
+                      <Input prefix={<SearchOutlined />} placeholder="搜索" className={styles.search} />
                     </AutoComplete>
                   </MenuItem>
                 )}
@@ -204,13 +204,10 @@ export default class MainLayout extends BaseReactController<any, IStateProps> {
                 <MenuItem key="/projects/server">
                   <Link to={"/server/start/introduce"}>Server</Link>
                 </MenuItem>
-                {/*</Menu.SubMenu>*/}
-
-                <MenuItem key="2">
-                  <Link to="/config/introduce">配置</Link>
+                {/*<MenuItem key="4">指南</MenuItem>*/}
+                <MenuItem key="5">
+                  <Link to={"/plugin/index"}>插件</Link>
                 </MenuItem>
-                <MenuItem key="4">指南</MenuItem>
-                <MenuItem key="5">插件</MenuItem>
                 <MenuItem key="8">
                   <Link to="/v1/readme">v1</Link>
                 </MenuItem>

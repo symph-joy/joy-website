@@ -11,11 +11,16 @@
 }
 
 .header {
-  box-shadow: 0 2px 8px #f0f1f2;
+  box-shadow: 0 2px 8px var(--border-color);
+  z-index: 1;
+  .search {
+     border-radius: 15px;
+  }
 }
 .nav() {
   padding: 8px 0;
-  background-color: var(--background-color);
+  //background-color:  var(--background-color);
+  background: linear-gradient( to bottom, var(--background-color) -300%, transparent 700%);
   border-bottom: 1px solid var(--border-color);
   transition: all 0.3s;
 

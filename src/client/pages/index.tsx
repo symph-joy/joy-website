@@ -12,9 +12,10 @@ import {
   LinkOutlined,
   AppstoreAddOutlined,
   DeploymentUnitOutlined,
-  FundViewOutlined
+  FundViewOutlined,
 } from "@ant-design/icons";
 import { Prerender } from "@symph/joy";
+import { Head } from "@symph/joy/react";
 import { DocsModel } from "../model/docs.model";
 import { Inject } from "@symph/core";
 
@@ -27,6 +28,8 @@ export default class HelloController extends BaseReactController {
   @Inject()
   public docModel: DocsModel;
 
+  private birds: any;
+
   async initModelStaticState(): Promise<void | number> {
     await Promise.all([
       this.docModel.getSnippet("/@snippets/hello-react-controller"),
@@ -34,21 +37,46 @@ export default class HelloController extends BaseReactController {
     ]);
   }
 
-  componentDidMount() {
-    (window as any).VANTA.BIRDS({
+  loadScript = async (id: string, src: string) => {
+    if (document.querySelector("#" + id)) {
+      return;
+    }
+    const js = document.createElement("script");
+    js.id = id;
+    js.type = "text/javascript";
+    js.src = src;
+    document.body.appendChild(js);
+    return new Promise((resolve, reject) => {
+      js.onload = resolve;
+      js.onerror = reject;
+    });
+  };
+
+  async componentDidMount() {
+    await this.loadScript("jsThree", "https://cdn.jsdelivr.net/npm/three@0.122/build/three.min.js");
+    await this.loadScript("jsBirds", "https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js");
+    this.birds = (window as any).VANTA.BIRDS({
       el: "#banner",
       mouseControls: true,
       touchControls: true,
       gyroControls: false,
-      minHeight: 390.0,
+      minHeight: 500.0,
       minWidth: 200.0,
+      top: -80,
       scale: 1.0,
       scaleMobile: 1.0,
       backgroundAlpha: 0.0,
       color1: 0xfa541c,
       color2: 0xfaad14,
       colorMode: "variance",
+      separation: 20,
+      alignment: 20,
+      cohesion: 20,
     });
+  }
+
+  componentWillUnmount() {
+    this.birds?.destroy();
   }
 
   renderView(): ReactNode {
@@ -57,7 +85,7 @@ export default class HelloController extends BaseReactController {
     const docHelloServerController = snippets["/@snippets/hello-server-controller"];
 
     return (
-      <Layout className={styles.layout}>
+      <Layout className={styles.root}>
         <Content>
           {/* -------- banner -------- */}
           <section role="banner" id="banner" className={styles.banner}>
@@ -129,49 +157,55 @@ export default class HelloController extends BaseReactController {
               <div>
                 <ul className={styles.function__list}>
                   <li>
-                    <Link to={'/joy/start/introduce'}>
-                    <DeploymentUnitOutlined />
-                    <h2>JS/TS 全栈框架</h2>
-                    <p>@symph/joy 满足简单到复杂应用研发，开箱即用，渐进式迭代，能够快速开发、调试和发布应用。</p>
+                    <Link to={"/joy/start/introduce"}>
+                      <DeploymentUnitOutlined />
+                      <h2>JS/TS 全栈框架</h2>
+                      <p>@symph/joy 满足简单到复杂应用研发，开箱即用，渐进式迭代，能够快速开发、调试和发布应用。</p>
                     </Link>
                   </li>
                   <li>
-                    <Link to={'/react/start/introduce'}>
-                    <FundViewOutlined />
-                    <h2>React 应用</h2>
-                    <p>提供一体的 React 应用解决方案，快速开发页面，管理状态，支持服务端渲染。</p>
+                    <Link to={"/react/start/introduce"}>
+                      <FundViewOutlined />
+                      <h2>React 应用</h2>
+                      <p>提供一体的 React 应用解决方案，快速开发页面，管理状态，支持服务端渲染。</p>
                     </Link>
                   </li>
                   <li>
-                    <Link to={'/server/start/introduce'}>
-                    <CloudServerOutlined />
-                    <h2>Node.js 应用</h2>
-                    <p>类似 Spring Boot，开箱即用，提供数据库、缓存、安全等常用组件。（开发中）</p>
+                    <Link to={"/server/start/introduce"}>
+                      <CloudServerOutlined />
+                      <h2>Node.js 应用</h2>
+                      <p>类似 Spring Boot，开箱即用，提供数据库、缓存、安全等常用组件。（开发中）</p>
                     </Link>
                   </li>
                   <li>
-                    <Link to={'/server/start/introduce'}>
+                    <Link to={"/joy/container/dependency-inject"}>
                       <AppstoreAddOutlined />
-                    <h2>容器化</h2>
-                    <p>将面向对象软件开发方法运用到 JS/TS 应用中，能轻松应对复杂业务场景。</p>
+                      <h2>容器化</h2>
+                      <p>将面向对象软件开发方法运用到 JS/TS 应用中，能轻松应对复杂业务场景。</p>
                     </Link>
                   </li>
 
                   <li>
-                    <BlockOutlined />
-                    <h2>混合同构开发</h2>
-                    <p>前后端一体开发，可一次编写数据结构、接口约定、处理方法等，前后端共同使用。</p>
+                    <Link to={"/joy/basic/dir-tree#前后端混合应用"}>
+                      <BlockOutlined />
+                      <h2>混合同构开发</h2>
+                      <p>前后端一体开发，可一次编写数据结构、接口约定、处理方法等，前后端共同使用。</p>
+                    </Link>
                   </li>
                   <li>
-                    <ClusterOutlined />
-                    <h2>前后端分离</h2>
-                    <p>可将前端应用导出，独立运行和部署，或者前后端分离两工程独立开发。</p>
+                    <Link to={"/joy/advanced-features/export"}>
+                      <ClusterOutlined />
+                      <h2>前后端分离</h2>
+                      <p>可将前端应用导出，独立运行和部署，或者前后端分离两工程独立开发。</p>
+                    </Link>
                   </li>
 
                   <li>
-                    <LinkOutlined />
-                    <h2>类型约束</h2>
-                    <p>默认支持和推荐使用TypeScript，提供静态类型检查和高级语法特性。</p>
+                    <Link to={"/joy/advanced-features/typescript"}>
+                      <LinkOutlined />
+                      <h2>类型约束</h2>
+                      <p>默认支持和推荐使用TypeScript，提供静态类型检查和高级语法特性。</p>
+                    </Link>
                   </li>
 
                   {/*<li>*/}
@@ -262,7 +296,8 @@ export default class HelloController extends BaseReactController {
                 {/*  <li>Team</li>*/}
                 {/*</ul>*/}
                 {/*<div className={styles.footer__bottom_subscribe}>*/}
-                {/*  <h2>Get the Symph Joy newsletter</h2>*/}
+                {/*  <h2>Get
+                 the Symph Joy newsletter</h2>*/}
                 {/*  <Input.Search size="large" placeholder="Email Address" enterButton={<Button>SUBSCRIBE</Button>} />*/}
                 {/*  <Checkbox>Yes, I would like to be contacted by The Symph Joy Team for newsletters, promotions and events</Checkbox>*/}
                 {/*</div>*/}

@@ -1,4 +1,4 @@
-# Joy 配置
+# Joy 应用配置
 
 ## basePath
 

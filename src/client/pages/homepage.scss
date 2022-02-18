@@ -5,6 +5,11 @@
   overflow: hidden;
 }
 
+.root {
+  position: relative;
+  top: -80px;
+}
+
 .container {
   max-width: 1140px;
   padding: 0 20px;
@@ -18,15 +23,14 @@
 }
 
 .banner {
-  height: 400px;
+  height: 500px;
   text-align: center;
   position: relative;
   overflow: hidden;
-  z-index: 1;
   background: var(--sub-background-color);
 
   &__paragraph {
-    margin-top: 80px;
+    margin-top: 160px;
   }
 
   @keyframes rotate1 {
@@ -217,7 +221,7 @@
 }
 
 .function {
-  padding: 30px 0;
+  padding: 10px 0;
 
   &__title {
     font-size: clamp(1.8rem, var(--bigger-than-break-point), 2.375rem);
@@ -235,7 +239,6 @@
     text-align: center;
 
     li {
-      padding: 50px 25px;
       border: 2px solid var(--border-color);
       border-radius: 5px;
       perspective: 1000px;
@@ -249,6 +252,10 @@
 
       a {
         color: var(--font-color);
+        width: 100%;
+        height: 100%;
+        padding: 50px 25px;
+        display: block;
       }
     }
 
@@ -284,7 +291,7 @@
     margin-top: 100px;
 
     pre {
-      margin: 10px 30px 30px 20px;
+      //margin: 10px 30px 30px 20px;
     }
 
     code {
@@ -296,7 +303,7 @@
       height:300px;
       box-shadow: 0 8px 15px 0 rgb(0 0 0 / 20%);
       border-radius: 5px;
-      //margin: 0 0 20px 30px;
+      margin: 10px 30px 30px 20px;
     }
 
 

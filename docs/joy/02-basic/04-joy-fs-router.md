@@ -1,14 +1,8 @@
 # React 约定路由
 
-## @symph/react 路由
+> 这篇文章只介绍如何使用约定路由，如果查看 `@symph/react` 路由的详细文档， 点击跳转到 [`@symph/react` React 路由](/react/basic/react-router)。
 
-基于`@symph/react/router-dom`提供的 React 路由模块，`@symph/joy` 解析源代码目录结构，按照路由约定，转化生成 React 路由，交由 React 路由渲染界面。
-
-所以了解 React 路由信息， 请跳转到 [`@symph/react` React 路由](/react/basic/react-router)，查看详细文档。
-
-## 约定式路由
-
-约定式路由也叫文件路由，通过文件名和其目录路径得出路由信息。
+约定式路由也称为文件路由，按照约定的目录路径和文件名，转为为路由信息。
 
 Joy 约定存放在`src/client/pages`或者`src/pages`目录中的 ReactController 组件，将会自动注册为路由组件，注意：如果`src/client/pages`存在，就不会解析`src/pages`了。 例如：
 

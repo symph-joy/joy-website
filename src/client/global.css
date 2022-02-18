@@ -18,7 +18,7 @@ body {
   --border-color: #eeeeee;
   --background-color: #fff;
   --font-reverse-color: #fff;
-  --sub-background-color: #f0d8a821;
+  --sub-background-color: #f0d8a830;
 
   --break-point: 920px;
   --bigger-than-break-point: calc(100vw - var(--break-point));

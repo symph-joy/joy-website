@@ -1,13 +1,14 @@
-import Document, { Head, Main, JoyScript } from "@symph/joy/document";
+import Document, { Head, Main, JoyScript, Html } from "@symph/joy/document";
 import { themeColors, themeColorStyle } from "../utils/theme";
 
 export default class MyDocument extends Document {
   render() {
     return (
-      <html>
+      <Html>
         <Head>
           {/* <link href="/static/antd.css" rel="stylesheet"></link> */}
           {/* add custom style */}
+          <title>Symph Joy</title>
           <link rel="stylesheet" id="theme-style" />
           <style id="theme-color"></style>
           <script
@@ -27,14 +28,12 @@ export default class MyDocument extends Document {
               `,
             }}
           />
-          <script src="https://cdn.bootcdn.net/ajax/libs/three.js/r122/three.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
         </Head>
         <body>
           <Main />
           <JoyScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }

@@ -6,36 +6,37 @@ Joy 支持 React 和 Node 以及两者的混合应用，下面列举各种应用
 
 ### React 应用
 
-```shell
-    myapp
-        src # 源代码目录
-            pages    # React文件约定路由目录
-            models    # ReactModel目录
-            components  # React组件
-            server  # 可选，server端目录
-        config  # 配置目录
-            config.ts  # 配置文件
-        public  # 静态公共目录
-            logo.png  # 静态文件
-        package.json
+```text
+myapp
+    src             // 源代码目录
+        pages       // React文件约定路由目录
+        models      // ReactModel目录
+        components  // React组件目录
+        server      // 可选，server端目录
+    config          // 配置目录
+        config.ts   // 配置文件
+    public          // 静态公共目录
+        logo.png    // 静态文件
+    package.json
 ```
 
-### Node 应用 或者 前后端混合应用
+### 前后端混合应用
 
-```shell
+```text
 myapp
-    src # 源代码目录
-        server  # 服务端代码
+    src                 // 源代码目录
+        common:         // 前后端共享的代码，如类接口定义，通用处理方法等。
+        server          // 服务端代码
             controllers
             services
-        client  # 可选，客户端代码
-            pages    # 约定React路由目录
-            models    # ReactModel目录
-            components  # React组件
-    config  # 配置目录
-        config.ts  # 配置文件
-    public  # 静态公共目录
-        logo.png  # 静态文件
+        client          // 可选，客户端目录
+            pages       // 约定React路由目录
+            models      // ReactModel目录
+            components  // React组件目录
+    config              // 配置目录
+        config.ts       // 配置文件
+    public              // 静态公共目录
+        logo.png        // 静态文件
     package.json
 ```
 
@@ -43,7 +44,7 @@ myapp
 
 ### .joy 目录
 
-Joy 在运行时自动生成的目录，是 Joy 必须的，但可以随时清除，Joy 在下次运行时重新生成该目录。
+`.joy` 目录是在运行时自动生成的目录，是 Joy 应用必须的，但可以随时清除，在下次运行时重新生成该目录。
 日常开发时，我们不用去关注和修改里面的文件。
 里面主要包含的文件有：
 
@@ -60,7 +61,7 @@ Joy 在运行时自动生成的目录，是 Joy 必须的，但可以随时清�
 [dotenv](https://github.com/motdotla/dotenv) 环境变量配置文件。
 例如：
 
-```shell
+```text
 port=8888
 host=localhost
 ```
