@@ -132,7 +132,7 @@ export default class HelloController extends BaseReactController {
               <Row justify="center">
                 {/*<Button>了解 JOY</Button>*/}
                 <Button>
-                  <Link to="docs/docs/basic/getting-started">快速开始</Link>
+                  <Link to="/joy/start/quick-started">快速开始</Link>
                 </Button>
               </Row>
             </Paragraph>
