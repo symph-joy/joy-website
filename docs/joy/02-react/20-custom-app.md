@@ -7,7 +7,9 @@ Joy 使用`App`来包装和初始化整个界面，我们可以自定它来控�
 - 修改路由或者路由的渲染方式。
 - 添加全局样式。
 
-我们开始覆盖默认的`App`， 创建文件`./src/pages/_app.tsx`，修改其内容：
+## _app.tsx 文件
+
+下面我们开始覆盖默认的`App`， 首选创建文件`./src/pages/_app.tsx`，修改其内容：
 
 ```tsx
 import React from "react";

@@ -2,8 +2,6 @@
 
 ## 介绍
 
-官网：[https://lnlfps.github.io/symph-joy](https://lnlfps.github.io/symph-joy)
-
 @symph/joy 让我们轻松的进行前端应用开发，零配置可用，简单清晰的业务和数据管理模块，已集成大量最佳实践的优化方案，即使你才刚接触 React，也可以轻松创建高可用、可维护的前端应用。
 
 > 该项目已在生产环境大量使用，如有任何疑问、使用帮助、bug 反馈、特性讨论，请和我们联系(邮件：lnlfps@gmail.com; QQ 群：929743297)，或者到 github 创建 issue，欢迎加入。
@@ -98,18 +96,7 @@ export default class HelloController extends Component {
 
 最后运行`npm run dev`命令，在浏览器中输入访问地址`http://localhost:3000`，即可看到刚才写的页面。如果需要使用其它端口来启动应用 `npm run dev -- -p <your port here>`
 
-到目前为止，一个简单完整的前端应用已经创建完成，可以开始工作了。还有很多神奇的特性，请查看 [详细使用指南](https://lnlfps.github.io/symph-joy/#/getting-started)
-
-## 文档
-
-[https://lnlfps.github.io/symph-joy](https://lnlfps.github.io/symph-joy)
-
-快速连接：
-
-- [使用指南](https://lnlfps.github.io/symph-joy/#/getting-started)
-- [配置文档](https://lnlfps.github.io/symph-joy/#/configurations)
-- [插件列表](https://lnlfps.github.io/symph-joy/#/plugins)
-- [升级日志](https://lnlfps.github.io/symph-joy/#/change-log)
+到目前为止，一个简单完整的前端应用已经创建完成，可以开始工作了。
 
 ## 联系我们
 

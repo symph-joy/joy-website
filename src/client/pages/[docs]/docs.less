@@ -7,9 +7,15 @@
     height: 100vh;
     overflow-x: clip;
     :global {
-      .ant-menu-title-content {
-        color: var(--font-color);
-        opacity:0.85;
+      .ant-menu-item {
+        height: 32px;
+        line-height: 32px;
+        margin-bottom: 1px;
+        margin-top: 1px;
+        .ant-menu-title-content {
+          //color: var(--font-color);
+          opacity:0.80;
+        }
       }
       .ant-menu-submenu-title {
         .ant-menu-title-content {
@@ -46,8 +52,10 @@
         }
         p {
           margin: 16px 0;
+        }
+        :not(pre){
           code {
-            padding: 2px 5px;
+            padding: 0 5px;
             color: #d56161;
             background: #f6f7f9;
           }
@@ -84,8 +92,9 @@
         background: #262626;
       }
     }
-    p {
+  :not(pre) {
       code {
+        padding: 0 5px;
         color: #ff7875 !important;
         background: hsla(0, 0%, 100%, 0.08) !important;
       }

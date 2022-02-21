@@ -8,7 +8,6 @@ export default class MyDocument extends Document {
         <Head>
           {/* <link href="/static/antd.css" rel="stylesheet"></link> */}
           {/* add custom style */}
-          <title>Symph Joy</title>
           <link rel="stylesheet" id="theme-style" />
           <style id="theme-color"></style>
           <script

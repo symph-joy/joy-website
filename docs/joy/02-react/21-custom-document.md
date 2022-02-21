@@ -3,6 +3,8 @@
 `Document` React 组件用于生成页面的`<html>`和`<body>`标签， Joy 会根据应用内的组件和样式，自动生成必须的 js 和 css 标签，保证页面 html 能够正常被加载。
 我们可以通过自定义`Document`在`<html>`加入自定义的扩展`<head>`、`<link>`或者`<sciprt>`。
 
+## _document.tsx
+
 覆盖默认的`Document`，创建文件`./src/pages/_document.tsx`并修改`Document`如下：
 
 ```tsx

@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { BaseReactController, ReactController, RouteParam } from "@symph/react";
 import { Spin, Anchor } from "antd";
 import styles from "./docs.less";
-import { Prerender, IJoyPrerender, TJoyPrerenderApi } from "@symph/joy/react";
+import { Prerender, IJoyPrerender, TJoyPrerenderApi, Head } from "@symph/joy/react";
 import { DocMenuItem, DocsModel } from "../../model/docs.model";
 import { Inject } from "@symph/core";
 import Doc from "../../component/doc";
@@ -76,7 +76,7 @@ export default class Path extends BaseReactController {
   };
 
   renderView(): ReactNode {
-    const { loadCurrentDocErr, loadingCurrentDoc, titleTrees } = this.docsModel.state;
+    const { loadCurrentDocErr, loadingCurrentDoc, titleTrees, currentDoc } = this.docsModel.state;
     return (
       <div className={styles.right}>
         <div className={styles.center}>
@@ -86,6 +86,8 @@ export default class Path extends BaseReactController {
                 {loadCurrentDocErr.code}:{loadCurrentDocErr.message}
               </div>
             ) : undefined}
+            <Head>{currentDoc ? <title>{currentDoc.title}</title> : undefined}</Head>
+
             <Doc className={styles.docContent} path={this.props.location.pathname} />
           </Spin>
         </div>

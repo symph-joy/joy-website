@@ -3,6 +3,7 @@ import { Layout, Menu, AutoComplete, Button, Input } from "antd";
 import { Inject } from "@symph/core";
 import { DocsModel } from "../model/docs.model";
 import { BaseReactController, ReactController } from "@symph/react";
+import { Head } from "@symph/joy/react";
 import { Outlet, Link } from "@symph/react/router-dom";
 import Icon, { MenuUnfoldOutlined, MenuFoldOutlined, CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import styles from "./layout.less";
@@ -152,6 +153,9 @@ export default class MainLayout extends BaseReactController<any, IStateProps> {
     return (
       <Layout className={styles.layout}>
         <header className={styles.header}>
+          <Head>
+            <title>Symph Joy</title>
+          </Head>
           <nav id="nav" className={styles.nav}>
             <div id="nav-inner" className={styles.nav__inner}>
               <Link id="logo" to="/" className={styles.logo}>

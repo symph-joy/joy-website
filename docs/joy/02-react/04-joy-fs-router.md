@@ -1,10 +1,11 @@
 # React 约定路由
 
-> 这篇文章只介绍如何使用约定路由，如果查看 `@symph/react` 路由的详细文档， 点击跳转到 [`@symph/react` React 路由](/react/basic/react-router)。
+> 这篇文章只介绍如何使用约定路由，如需查看 `@symph/react` 路由的详细文档， 点击跳转到 [`@symph/react` React 路由](/react/basic/react-router)。
 
-约定式路由也称为文件路由，按照约定的目录路径和文件名，转为为路由信息。
+约定式路由也称为文件路由，在约定目录下的文件，通过文件名称和子路径名，推测出路由信息，并自动注册为路由。
 
-Joy 约定存放在`src/client/pages`或者`src/pages`目录中的 ReactController 组件，将会自动注册为路由组件，注意：如果`src/client/pages`存在，就不会解析`src/pages`了。 例如：
+Joy 约定存放在`src/client/pages`或者`src/pages`目录中的 ReactController 组件，将会自动注册为路由组件。注意：只有`src/client/pages` 不存在，才会使用`src/pages`目录。
+例如：
 
 ```text
 src
@@ -39,12 +40,14 @@ src
 - components 和 component 目录
 - utils 和 util 目录
 
+如果在约定路由目录下，组件已被装饰器`@ReactRoute()`明确声明为路由组件，那么也不会再被当做文件路由组件。
+
 ### 动态路由
 
 约定 `[]` 包裹的文件或文件夹为动态路由，例如：
 
-- src/client/pages/users/[id].tsx 会成为 /users/:id
-- src/client/pages/users/[id]/settings.tsx 会成为 /users/:id/settings
+- src/client/pages/users/[id].tsx 会成为 `/users/:id`
+- src/client/pages/users/[id]/settings.tsx 会成为 `/users/:id/settings`
 
 ### 缺省路由
 
