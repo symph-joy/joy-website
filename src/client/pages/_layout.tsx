@@ -92,11 +92,9 @@ export default class MainLayout extends BaseReactController<any, IStateProps> {
   }
 
   componentDidMount() {
-    const theme = getTheme();
     const oBtn = document.getElementById("collapseBtn");
     const oBody = document.getElementsByTagName("body")[0];
 
-    oBody.setAttribute("data-theme", theme);
     const observer = new IntersectionObserver(([entry]) => {
       const { intersectionRatio } = entry;
 
