@@ -42,7 +42,7 @@ export default class MyDocument extends Document {
           <Main />
           <JoyScript />
           
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/darkreader/4.9.44/darkreader.min.js" />
+          <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.44/darkreader.min.js" />
           <script dangerouslySetInnerHTML={{
             __html: 
               `
