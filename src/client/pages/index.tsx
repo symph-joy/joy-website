@@ -5,8 +5,6 @@ import { Layout, Typography, Button, Row, Carousel } from "antd";
 import styles from "./homepage.scss";
 import {
   ClusterOutlined,
-  ApartmentOutlined,
-  FundOutlined,
   CloudServerOutlined,
   BlockOutlined,
   LinkOutlined,
@@ -15,7 +13,6 @@ import {
   FundViewOutlined,
 } from "@ant-design/icons";
 import { Prerender } from "@symph/joy";
-import { Head } from "@symph/joy/react";
 import { DocsModel } from "../model/docs.model";
 import { Inject } from "@symph/core";
 
