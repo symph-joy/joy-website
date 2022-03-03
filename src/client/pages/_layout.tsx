@@ -149,6 +149,10 @@ export default class MainLayout extends BaseReactController<any, IStateProps> {
   renderView(): ReactNode {
     const { result } = this.docsModel.state;
     const { collapsed, isMobile } = this.layoutModel.state;
+    console.log(this.props.location.pathname);
+    console.log(this.location);
+    
+    
 
     return (
       <Layout className={styles.layout}>
@@ -166,7 +170,11 @@ export default class MainLayout extends BaseReactController<any, IStateProps> {
                 {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
               </Button>
 
-              <Menu className={styles.menu + " " + (collapsed ? styles.menu__collapsed : "")} mode={isMobile ? "vertical" : "horizontal"}>
+              <Menu
+                selectedKeys={[this.props.location.pathname]}
+                className={styles.menu + " " + (collapsed ? styles.menu__collapsed : "")}
+                mode={isMobile ? "vertical" : "horizontal"}
+              >
                 {isMobile && (
                   <MenuItem key="0" className={styles.menu__closeItem}>
                     <CloseOutlined onClick={this.handleToggleCollapsed} />
@@ -199,23 +207,23 @@ export default class MainLayout extends BaseReactController<any, IStateProps> {
                   </MenuItem>
                 )}
                 {/*<Menu.SubMenu key="1" title="项目">*/}
-                <MenuItem key="/projects/joy">
+                <MenuItem key="/joy/start/introduce">
                   <Link to={"/joy/start/introduce"}>Joy</Link>
                 </MenuItem>
-                <MenuItem key="/projects/react">
+                <MenuItem key="/react/start/introduce">
                   <Link to={"/react/start/introduce"}>React</Link>
                 </MenuItem>
-                <MenuItem key="/projects/server">
+                <MenuItem key="/server/start/introduce">
                   <Link to={"/server/start/introduce"}>Server</Link>
                 </MenuItem>
                 {/*<MenuItem key="4">指南</MenuItem>*/}
-                <MenuItem key="5">
+                <MenuItem key="/plugin/index">
                   <Link to={"/plugin/index"}>插件</Link>
                 </MenuItem>
-                <MenuItem key="8">
+                <MenuItem key="/v1/readme">
                   <Link to="/v1/readme">v1</Link>
                 </MenuItem>
-                <MenuItem key="6">
+                <MenuItem key="Github">
                   <a target="_blank" href="https://github.com/lnlfps/symph-joy">
                     Github
                   </a>
