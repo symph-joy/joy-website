@@ -269,7 +269,7 @@ export class DocsService implements IComponentLifecycle {
       }
       doc.mdContent = fs.readFileSync(doc.file, { encoding: "utf-8" });
       doc.htmlContent = this.markdownToHtml(doc.mdContent);
-      doc.anchor = this.getDocTitleByLevel(doc.mdContent, 3, 1);
+      doc.anchor = this.getDocTitleByLevel(doc.mdContent, 4, 1);
       if (!doc.hasMenu) {
         const title = this.getDocTitleByLevel(doc.mdContent, 1, 0);
         doc.title = title && title[0]?.text;

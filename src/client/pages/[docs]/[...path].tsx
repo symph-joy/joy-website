@@ -98,9 +98,19 @@ export default class Path extends BaseReactController {
                 if (value.children) {
                   return (
                     <Link key={key} href={value.id} title={value.text}>
-                      {value.children.map((child, k) => (
-                        <Link key={k} href={child.id} title={child.text} />
-                      ))}
+                      {value.children.map((child1, key1) => {
+                        if (child1.children) {
+                          return (
+                            <Link key={key1} href={child1.id} title={child1.text}>
+                              {child1.children.map((child2, key2) => {
+                                return <Link key={key2} href={child2.id} title={child2.text} />;
+                              })}
+                            </Link>
+                          );
+                        } else {
+                          return <Link key={key1} href={child1.id} title={child1.text} />;
+                        }
+                      })}
                     </Link>
                   );
                 } else {

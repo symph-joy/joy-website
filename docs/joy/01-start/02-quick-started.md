@@ -4,7 +4,7 @@ Joy 支持 React、Node.js 或者前后端混合应用开发，这里以一个�
 
 ## 环境准备
 
-- node 建议 12 或以上版本，推荐使用 nvm 来管理 node 版本。
+- node 建议 12.13.0 或以上版本，推荐使用 nvm 来管理 node 版本。
 
 - 推荐使用 yarn 管理依赖，国内使用 [阿里 npm 源](https://npmmirror.com/) registry: https://registry.npm.taobao.org
 

@@ -36,4 +36,4 @@ export default class App extends React.Component<ReactAppProps, any> {
 ## 注意事项：
 
 - 如果你的应用正在开发模式下运行中，首次添加`./src/pages/_app.js`文件，需要重新启动开发服务器。
-- `App`在服务端和浏览器上都会被渲染，所以不能在这里使用`Node.js`特有的 API。
+- `App`在服务端和浏览器上都会被渲染，所以需要注意渲染环境差异，例如在服务端渲染时，不能使用浏览器特有的API。
