@@ -255,20 +255,39 @@ const themeColorStyle = {
 export { themeColors, themeColorStyle };
 
 export function getTheme() {
-  const { href } = document.getElementById("theme-style") as HTMLLinkElement;
+  let theme = "light";
+  if (typeof window !== "undefined") {
+    theme = window.localStorage.getItem("theme") || "light";
+  }
 
-  return href.includes("dark") ? "dark" : "light";
+  return theme;
 }
 
 export function changeTheme() {
   const newTheme = getTheme() === "dark" ? "light" : "dark";
-  const themeUrl = newTheme === "dark" ? "/static/antd.dark.css" : "/static/antd.css";
-  const oBody = document.getElementsByTagName("body")[0];
-  const oLink = document.getElementById("theme-style") as HTMLLinkElement;
-
   localStorage.setItem("theme", newTheme);
-  oLink.href = themeUrl;
+
+  const oBody = document.getElementsByTagName("body")[0];
   oBody.setAttribute("data-theme", newTheme);
+
+  if (newTheme === "dark") {
+    const defaultTheme = {
+      brightness: 100,
+      contrast: 90,
+      sepia: 10,
+    };
+
+    const defaultFixes = {
+      invert: [],
+      css: "",
+      ignoreInlineStyle: [".react-switch-handle"],
+      ignoreImageAnalysis: [],
+      disableStyleSheetsProxy: true,
+    };
+    if (window.MutationObserver) (window as any).DarkReader.enable(defaultTheme, defaultFixes);
+  } else {
+    if (window.MutationObserver) (window as any).DarkReader.disable();
+  }
 }
 
 type ThemeColorType = keyof typeof themeColorStyle;
