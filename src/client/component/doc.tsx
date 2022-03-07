@@ -14,15 +14,15 @@ export default class Doc extends BaseReactController {
 
   addMermaid() {
     function initMermaid() {
-      (window as any).mermaid.initialize({ theme: "base", themeVariables: { primaryColor: "#ffd8bf" } });
-      (window as any).mermaid.init(undefined, ".language-mermaid");
+      (window as any).mermaid?.initialize({ theme: "base", themeVariables: { primaryColor: "#ffd8bf" } });
+      (window as any).mermaid?.init(undefined, ".language-mermaid");
     }
     let script: HTMLScriptElement | undefined = document.getElementById("mermaid-script") as HTMLScriptElement;
     if (!script) {
       script = document.createElement("script");
       script.id = "mermaid-script";
       script.type = "text/javascript";
-      script.src = "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js";
+      script.src = "https://cdn.jsdelivr.net/npm/mermaid@8.13.10/dist/mermaid.core.min.js";
       document.body.appendChild(script);
       script.onload = () => {
         initMermaid();

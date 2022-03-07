@@ -39,6 +39,17 @@ interface StaticImageData {
 }
 ``` 
 
+## 引用静态文件图片
+
+Joy 提供内建静态文件服务，将图片放入项目的`public`目录下，即可通过URL路径访问该图片。
+
+例如： 我们将图片放入 `public/logo.png` 路径下，在`img`标签里引用该图片。
+
+```tsx
+  return <img src="/logo.png" />;
+```
+
+
 ## Image 组件和图片优化
 
 Joy `Image` 组件是 HTML `<img>` 标签的扩展， 它集成了一系列的性能优化操作，为应用提供更好的用户体验。
@@ -91,7 +102,7 @@ function Home() {
     <>
       <h1>HomePage</h1>
       <Image
-        src="/logo.png" // 相对的图片加载地址。
+        src="/logo.png" // 图片的 URL 相对路径。
         alt="logo"
         width={100}
         height={100}
