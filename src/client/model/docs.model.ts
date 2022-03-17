@@ -70,43 +70,68 @@ export class DocsModel extends BaseReactModel<DocsModelState> {
     }
     if (value) {
       for (const h1 of titleArray) {
-        if (h1.text.includes(value) || this.handleString(h1.text).includes(this.handleString(value))) {
-          const temp = res.find((value) => value.path === h1.path);
-          if (!temp) {
-            let obj = {
-              text: h1.text,
-              id: h1.id,
-              path: h1.path,
-              file: h1.file,
-            };
-            res.push(obj);
-          }
-        }
+        this.judgeTitleHasValue(h1, value, res, 1, h1, h1);
         if (h1.children) {
           for (const h2 of h1.children) {
-            if (h2.text.includes(value) || this.handleString(h2.text).includes(this.handleString(value))) {
-              let obj = {
-                text: h1.text,
-                id: h1.id,
-                path: h1.path,
-                file: h1.file,
-                children: [
-                  {
-                    text: h2.text,
-                    id: h2.id,
-                  },
-                ],
-              };
-              res.push(obj);
+            this.judgeTitleHasValue(h2, value, res, 2, h1, h1);
+            if (h2.children) {
+              for (const h3 of h2.children) {
+                this.judgeTitleHasValue(h3, value, res, 3, h1, h2);
+              }
             }
           }
         }
       }
     }
-
     this.setState({
       result: res,
     });
+  }
+
+  private judgeTitleHasValue(element: TreeItem, value: string, res: TreeItem[], level: number, h1: TreeItem, parent: TreeItem) {
+    if (element.text.includes(value) || this.handleString(element.text).includes(this.handleString(value))) {
+      const temp =
+        level === 1
+          ? res.find((value) => value.path === element.path)
+          : level === 2
+          ? res.find((value) => {
+              if (value.children) {
+                return value.children[0].text === element.text;
+              }
+            })
+          : false;
+      if (!temp) {
+        let obj = {
+          text: h1.text,
+          id: h1.id,
+          path: h1.path,
+          file: h1.file,
+          children:
+            level === 1
+              ? null
+              : level === 2
+              ? [
+                  {
+                    text: element.text,
+                    id: element.id,
+                  },
+                ]
+              : [
+                  {
+                    text: parent.text,
+                    id: parent.id,
+                    children: [
+                      {
+                        text: element.text,
+                        id: element.id,
+                      },
+                    ],
+                  },
+                ],
+        };
+        res.push(obj);
+      }
+    }
   }
 
   public clearSearch() {
@@ -125,7 +150,6 @@ export class DocsModel extends BaseReactModel<DocsModelState> {
     });
     return respJson.data;
   }
-  
 
   public async getAllDocsMenus(): Promise<DocMenuItem[]> {
     const resp = await this.fetchService.fetchApi("/docs/allMenus");

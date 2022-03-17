@@ -42,14 +42,14 @@ src
 
 如果在约定路由目录下，组件已被装饰器`@ReactRoute()`明确声明为路由组件，那么也不会再被当做文件路由组件。
 
-### 动态路由
+## 动态路由
 
 约定 `[]` 包裹的文件或文件夹为动态路由，例如：
 
 - src/client/pages/users/[id].tsx 会成为 `/users/:id`
 - src/client/pages/users/[id]/settings.tsx 会成为 `/users/:id/settings`
 
-### 缺省路由
+## 缺省路由
 
 约定目录中的`index.tsx`(适用于.jsx 文件)命名的文件为目录下的缺省路由， 例如：
 
@@ -57,7 +57,7 @@ src
 - src/client/pages/users/index.tsx 会成为 `{path: "/user", index: true}`。
 - src/client/pages/users/[id]/index.tsx 会成为 `{path: "/users/:id", index: true}`。
 
-### 嵌套路由
+## 嵌套路由
 
 约定目录下有 `_layout.tsx` 时会生成嵌套路由，目录下的其它路由将作为其子路由，`_layout.tsx` 作为父级路由，需要通过 `Outlet` 渲染子路由组件。
 
@@ -93,7 +93,7 @@ src
 ];
 ```
 
-### 全局 Layout
+## 全局 Layout
 
 约定 `src/client/pages/_layout.tsx` 为全局路由。
 
@@ -128,7 +128,7 @@ export default class MainLayout extends BaseReactController {
 }
 ```
 
-### 错误页面
+## 错误页面
 
 当在服务端或者浏览器运行时，出现未捕获的异常，导致应用无法正常继续运行，将显示错误页面，展示错误代码和错误提示信息。
 
@@ -154,7 +154,7 @@ export default class MyError extends ErrorComponent {
 }
 ```
 
-### 404 页面
+## 404 页面
 
 `/404` 路由为特殊路由，渲染时如果未在注册的所有路由中匹配到页面，Joy 将渲染 404 组件。
 

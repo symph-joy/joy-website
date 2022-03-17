@@ -88,7 +88,7 @@ export class DocsService implements IComponentLifecycle {
       }
     } else {
       // 此时mdContent一定存在
-      const doc = this.getDocTitleByLevel(menu.mdContent, 2, 0);
+      const doc = this.getDocTitleByLevel(menu.mdContent, 3, 0);
       const obj = {
         text: menu.path,
         ...doc[0],
@@ -96,15 +96,6 @@ export class DocsService implements IComponentLifecycle {
         file: menu.file,
       };
       res.push(obj);
-      const doc2 = this.getDocTitleByLevel(menu.mdContent, 3, 2);
-      const obj1 = {
-        path: menu.path,
-        file: menu.file,
-        text: doc[0]?.text || menu.path,
-        depth: 1,
-        children: doc2,
-      };
-      res.push(obj1);
     }
   }
 

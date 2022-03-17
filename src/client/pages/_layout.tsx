@@ -149,8 +149,6 @@ export default class MainLayout extends BaseReactController<any, IStateProps> {
     const { collapsed, isMobile } = this.layoutModel.state;
     console.log(this.props.location.pathname);
     console.log(this.location);
-    
-    
 
     return (
       <Layout className={styles.layout}>
@@ -185,14 +183,21 @@ export default class MainLayout extends BaseReactController<any, IStateProps> {
                       value={this.state.search}
                       onSelect={this.onSelect}
                       onChange={this.onChange}
+                      dropdownMatchSelectWidth={400}
                       options={result.map((value, key) => ({
                         value: JSON.stringify(value),
                         label: (
                           <div key={key}>
                             {value.children ? (
-                              <a>
-                                {value.text} &gt; {value.children[0].text}
-                              </a>
+                              value.children[0].children ? (
+                                <a>
+                                  {value.text} &gt; {value.children[0].text} &gt; {value.children[0].children[0].text}
+                                </a>
+                              ) : (
+                                <a>
+                                  {value.text} &gt; {value.children[0].text}
+                                </a>
+                              )
                             ) : (
                               <a>{value.text}</a>
                             )}
