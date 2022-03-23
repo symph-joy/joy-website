@@ -12,7 +12,7 @@ import {
   DeploymentUnitOutlined,
   FundViewOutlined,
 } from "@ant-design/icons";
-import { Prerender } from "@symph/joy";
+import { Prerender } from "@symph/joy/react";
 import { DocsModel } from "../model/docs.model";
 import { Inject } from "@symph/core";
 

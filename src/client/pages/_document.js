@@ -41,11 +41,11 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <JoyScript />
-          
+
           <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.44/darkreader.min.js" />
-          <script dangerouslySetInnerHTML={{
-            __html: 
-              `
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
                 if (typeof window !== "undefined") {
                   const theme = window.localStorage.getItem("theme");
                   const oBody = document.getElementsByTagName("body")[0];
@@ -70,8 +70,8 @@ export default class MyDocument extends Document {
                     if (window.MutationObserver) DarkReader.disable();
                   }
                 }
-              `
-            }} 
+              `,
+            }}
           />
         </body>
       </Html>
