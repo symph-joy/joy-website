@@ -147,8 +147,6 @@ export default class MainLayout extends BaseReactController<any, IStateProps> {
   renderView(): ReactNode {
     const { result } = this.docsModel.state;
     const { collapsed, isMobile } = this.layoutModel.state;
-    console.log(this.props.location.pathname);
-    console.log(this.location);
 
     return (
       <Layout className={styles.layout}>
