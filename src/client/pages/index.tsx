@@ -280,7 +280,7 @@ export default class HelloController extends BaseReactController {
                   <div>QQ群: 929743297</div>
                   <div>Email: lnlfps@gmail.com</div>
                 </div>
-                <div className={styles.footer__MIT}>Open-source MIT Licensed | Copyright © 2022-present</div>
+                <div className={styles.footer__MIT}>本静态站点采用 @symph/joy 开发和渲染导出 | Open-source MIT Licensed | Copyright © 2022-present</div>
                 {/*<ul>*/}
                 {/*  <li>Learn</li>*/}
                 {/*  <li>Quickstart</li>*/}

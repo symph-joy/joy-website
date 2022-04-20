@@ -38,16 +38,13 @@ export default class MyDocument extends Document {
           </style>
           <link rel="stylesheet" href="/static/antd.variable.css" />
         </Head>
-        <body>
-          <Main />
-          <JoyScript />
-
-          <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.44/darkreader.min.js" />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
+        <body data-theme="light" data-is-mobile="false">
+        <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.44/darkreader.min.js" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
                 if (typeof window !== "undefined") {
-                  const theme = window.localStorage.getItem("theme");
+                  const theme = window.localStorage.getItem("theme") || 'light';
                   const oBody = document.getElementsByTagName("body")[0];
                   oBody.setAttribute("data-theme", theme);
 
@@ -71,8 +68,10 @@ export default class MyDocument extends Document {
                   }
                 }
               `,
-            }}
-          />
+          }}
+        />
+          <Main />
+          <JoyScript />
         </body>
       </Html>
     );
