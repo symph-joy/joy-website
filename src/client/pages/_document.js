@@ -39,7 +39,7 @@ export default class MyDocument extends Document {
           <link rel="stylesheet" href="/static/antd.variable.css" />
         </Head>
         <body data-theme="light" data-is-mobile="false">
-        <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.44/darkreader.min.js" />
+        <script src="https://cdn.staticfile.org/darkreader/4.9.44/darkreader.min.js" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

@@ -192,7 +192,7 @@ export default class MainLayout extends BaseReactController<any, IStateProps> {
                                   {value.text} &gt; {value.children[0].text} &gt; {value.children[0].children[0].text}
                                 </a>
                               ) : (
-                                <a>
+                                <a>w
                                   {value.text} &gt; {value.children[0].text}
                                 </a>
                               )
@@ -207,7 +207,7 @@ export default class MainLayout extends BaseReactController<any, IStateProps> {
                     </AutoComplete>
                   </MenuItem>
                 )}
-                {/*<Menu.SubMenu key="1" title="项目">*/}
+                <Menu.SubMenu key="1" title="项目">
                 <MenuItem key="/joy/start/introduce">
                   <Link to={"/joy/start/introduce"}>Joy</Link>
                 </MenuItem>
@@ -217,6 +217,7 @@ export default class MainLayout extends BaseReactController<any, IStateProps> {
                 <MenuItem key="/server/start/introduce">
                   <Link to={"/server/start/introduce"}>Server</Link>
                 </MenuItem>
+                </Menu.SubMenu>
                 {/*<MenuItem key="4">指南</MenuItem>*/}
                 <MenuItem key="/plugin/index">
                   <Link to={"/plugin/index"}>插件</Link>

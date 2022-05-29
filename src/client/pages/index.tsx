@@ -50,8 +50,8 @@ export default class HelloController extends BaseReactController {
   };
 
   async componentDidMount() {
-    await this.loadScript("jsThree", "https://cdn.jsdelivr.net/npm/three@0.122/build/three.min.js");
-    await this.loadScript("jsBirds", "https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js");
+    await this.loadScript("jsThree", "https://cdn.staticfile.org/three.js/r122/three.min.js");
+    await this.loadScript("jsBirds", "https://cdn.staticfile.org/vanta/0.5.22/vanta.birds.min.js");
     this.birds = (window as any).VANTA.BIRDS({
       el: "#banner",
       mouseControls: true,

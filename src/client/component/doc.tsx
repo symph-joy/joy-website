@@ -22,7 +22,7 @@ export default class Doc extends BaseReactController {
       script = document.createElement("script");
       script.id = "mermaid-script";
       script.type = "text/javascript";
-      script.src = "https://cdn.jsdelivr.net/npm/mermaid@8.14.0/dist/mermaid.min.js";
+      script.src = "https://cdn.staticfile.org/mermaid/9.1.1/mermaid.min.js";
       document.body.appendChild(script);
       script.onload = () => {
         initMermaid();
